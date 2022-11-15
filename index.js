@@ -6,8 +6,6 @@ const path = args[2]
 const pathOut = args[3]
 const LCINFO = "\x1b[36m%s\x1b[0m" //cyan
 
-console.log("[LOGGING] pathOut " + pathOut)
-
 console.info(LCINFO, "Reading Json from file at: " + path)
 
 fs.readFile(path)
@@ -21,8 +19,15 @@ fs.readFile(path)
 		console.log(LCINFO, "This object will be written to file:")
 		console.log(json_sorted)
 		const jsonText = JSON.stringify(json_sorted, null, 2)
-		console.info(LCINFO, "Writing Json from file at: " + path)
-		return fs.writeFile(pathOut, jsonText)
+		if (!pathOut) {
+			const parts = path.split(".json")
+			const copiedPath = parts[0] + "_copy.json"
+			console.info(LCINFO, "Writing Json from file at: " + copiedPath)
+			return fs.writeFile(copiedPath, jsonText)
+		} else {
+			console.info(LCINFO, "Writing Json from file at: " + pathOut)
+			return fs.writeFile(pathOut, jsonText)
+		}
 	})
 	.then(() => {
 		console.log("DONE!")
