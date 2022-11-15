@@ -3,7 +3,10 @@ const sorter = require("json-keys-sort")
 
 const args = process.argv
 const path = args[2]
+const pathOut = args[3]
 const LCINFO = "\x1b[36m%s\x1b[0m" //cyan
+
+console.log("[LOGGING] pathOut " + pathOut)
 
 console.info(LCINFO, "Reading Json from file at: " + path)
 
@@ -18,7 +21,8 @@ fs.readFile(path)
 		console.log(LCINFO, "This object will be written to file:")
 		console.log(json_sorted)
 		const jsonText = JSON.stringify(json_sorted, null, 2)
-		fs.writeFile(path, jsonText)
+		console.info(LCINFO, "Writing Json from file at: " + path)
+		return fs.writeFile(pathOut, jsonText)
 	})
 	.then(() => {
 		console.log("DONE!")
