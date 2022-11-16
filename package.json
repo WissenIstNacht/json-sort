@@ -9,6 +9,7 @@
 	"author": "WissenIstNach",
 	"license": "ISC",
 	"dependencies": {
+		"commander": "^9.4.1",
 		"json-keys-sort": "^2.0.0"
 	}
 }
