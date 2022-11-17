@@ -35,21 +35,24 @@ fs.readFile(pathIn)
     console.log('');
 
     const jsonText = JSON.stringify(json_sorted, null, 2);
-    if (!pathOut) {
-      const parts = pathIn.split('.json');
-      const copiedPath = parts[0] + '_copy.json';
-      console.info(LCINFO, 'Writing Json from file at: ' + copiedPath);
-      console.log('');
 
-      return fs.writeFile(copiedPath, jsonText);
-    } else {
-      console.info(LCINFO, 'Writing Json from file at: ' + pathOut);
-      console.log('');
+    const pathOut = getPathOut();
+    console.info(LCINFO, 'Writing Json from file at: ' + pathOut);
+    console.log('');
 
-      return fs.writeFile(pathOut, jsonText);
-    }
+    return fs.writeFile(pathOut, jsonText);
   })
   .then(() => {
     console.log(LCINFO, 'DONE!');
   })
   .catch((e) => console.error('The following error occurred', e));
+
+function getPathOut() {
+  const pathOut = program.opts().out;
+  if (!pathOut) {
+    const parts = pathIn.split('.json');
+    return parts[0] + '_copy.json';
+  } else {
+    return pathOut;
+  }
+}
