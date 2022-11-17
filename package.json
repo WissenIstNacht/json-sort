@@ -1,15 +1,15 @@
 {
-	"name": "json-sort",
-	"version": "1.0.0",
-	"description": "node script that sort field of a json file",
-	"scripts": {
-		"start": "node index.js",
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"author": "WissenIstNach",
-	"license": "ISC",
-	"dependencies": {
-		"commander": "^9.4.1",
-		"json-keys-sort": "^2.0.0"
-	}
+  "name": "json-sort",
+  "version": "1.0.0",
+  "description": "node script that sort field of a json file",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "WissenIstNach",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^9.4.1",
+    "json-keys-sort": "^2.0.0"
+  }
 }
