@@ -3,6 +3,7 @@ const sorter = require('json-keys-sort');
 const { program } = require('commander');
 
 const LCINFO = '\x1b[36m%s\x1b[0m'; //cyan
+const LCERROR = '\x1b[31m%s\x1b[0m'; //red
 
 program
   .name('JSON Sorter')
@@ -16,8 +17,13 @@ program
 
 program.parse();
 
+console.log('');
+console.log('---- JSON Sorter ----');
+console.log('');
+
 const pathIn = program.args[0];
-console.info(LCINFO, 'Reading Json from file at: ' + pathIn);
+console.log(LCINFO, 'Writing Json from file at:');
+console.log(pathIn);
 console.log('');
 
 fs.readFile(pathIn)
@@ -38,7 +44,8 @@ fs.readFile(pathIn)
     const jsonText = JSON.stringify(json_sorted, null, 2);
 
     const pathOut = getPathOut();
-    console.info(LCINFO, 'Writing Json from file at: ' + pathOut);
+    console.log(LCINFO, 'Writing Json from file at:');
+    console.log(pathOut);
     console.log('');
 
     return fs.writeFile(pathOut, jsonText);
@@ -46,7 +53,7 @@ fs.readFile(pathIn)
   .then(() => {
     console.log(LCINFO, 'DONE!');
   })
-  .catch((e) => console.error('The following error occurred', e));
+  .catch((e) => console.error(LCERROR, 'The following error occurred\n', e));
 
 function getPathOut() {
   const pathOut = program.opts().out;
