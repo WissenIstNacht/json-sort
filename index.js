@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const fs = require('fs/promises');
 const sorter = require('json-keys-sort');
 const { program } = require('commander');
